@@ -22,13 +22,17 @@ class Login extends React.Component {
         this.setState({password: event.target.value})
     }
     handleSubmit(event) {
-        if (this.state.password.length >= 8 && this.state.username) {
+        if (!this.state.password.length >= 8) {
+            this.setState ({message : "password must be at least 8 characters long"});
+        } else if (!this.state.username) {
+            this.setState ({message : "username must not be empty"});
+            
+        } else {
+            this.setState({message: ""});
             authService.login(this.state.username,this.state.password).then((data) => {
 
             });
 
-        } else {
-            this.setState({message: "Password must be at least 8 characters long"});
         }
         event.preventDefault();
     }
