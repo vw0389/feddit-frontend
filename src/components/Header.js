@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   AppBar,
   Box,
@@ -19,6 +19,8 @@ export const Header = ({ currentUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   const logIn = () => {
     console.log(username);
   };
@@ -31,8 +33,8 @@ export const Header = ({ currentUser }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography component="h4" variant="h4">
-            <Link to={'/'}>Feddit</Link>
+          <Typography component="h4" variant="h4" sx={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
+            Feddit
           </Typography>
           <TextField placeholder="Search" size="small" />
 
